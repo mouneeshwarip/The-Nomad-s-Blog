@@ -1,0 +1,1 @@
+web: gunicorn traveller_tales.wsgi
