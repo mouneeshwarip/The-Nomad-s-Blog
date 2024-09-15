@@ -11,7 +11,8 @@ class PostList(generic.ListView):
        like_count=Count('likes'),
        share_count=Count('shares')
    )
-   template_name = "post_list.html"   
+   template_name = "blog/index.html"   
+   paginate_by = 6
 
 
 
