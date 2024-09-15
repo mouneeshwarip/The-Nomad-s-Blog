@@ -6,6 +6,7 @@ from .models import Post, Like, Share
 # Create your views here.
 
 class PostList(generic.ListView):
+   # Annotate each post with the count of likes and shares
    queryset = Post.objects.all().annotate(
        like_count=Count('likes'),
        share_count=Count('shares')
