@@ -10,7 +10,7 @@ class PostList(generic.ListView):
    queryset = Post.objects.all().annotate(
        like_count=Count('likes'),
        share_count=Count('shares')
-   )
+   ).order_by('created_on') 
    template_name = "blog/index.html"   
    paginate_by = 6
 

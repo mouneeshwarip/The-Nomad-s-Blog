@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 
 <!-- index.html content starts here -->
@@ -13,11 +15,17 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="image-container">
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ post.author }}</p>
-                                </div>
-                            </div>
+                               <!-- Image Container -->
+                               <div class="image-container">
+                                   {% if post.featured_image %}
+                                   <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+                                   {% else %}
+                                   <img src="{% static 'default.jpg' %}" class="card-img-top" alt="Default Image">
+                                   {% endif %}
+                                   <div class="image-flash">
+                                       <p class="author">Author: {{ post.author }}</p>
+                                   </div>
+                               </div>
 
                             <!-- Post Excerpt -->
                             <a href="#" class="post-link">
@@ -55,5 +63,8 @@
     {% endif %}
 </div>
 
-<!-- index.html content ends here -->
+{% block copyright %}
+    Copyright 2024 Mouna Balakumaran
 {% endblock %}
+{% endblock %}
+
