@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-jjl0dg@5$3m7-48kcc2qc78@y$=56$6i*cj14jbew%*01j*0p5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-mouneeshwar-thenomadsbl-jmwmo0smu7b.ws.codeinstitute-ide.net','.herokuapp.com']
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'django_summernote',
     'blog',
 ]
@@ -125,12 +127,23 @@ USE_I18N = True
 USE_TZ = True
 
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('dhqenbhh3'),
+    'API_KEY': os.environ.get('297234664535847'),
+    'API_SECRET': os.environ.get('b0PgGq0zcy1uVVDKRx'),
+}
+
+# Use Cloudinary to store media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 # Media files (uploads) settings
 MEDIA_URL = '/media/'
