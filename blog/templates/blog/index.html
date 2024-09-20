@@ -15,17 +15,17 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                               <!-- Image Container -->
-                               <div class="image-container">
-                                   {% if post.featured_image %}
-                                   <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
-                                   {% else %}
-                                   <img src="{% static 'default.jpg' %}" class="card-img-top" alt="Default Image">
-                                   {% endif %}
-                                   <div class="image-flash">
-                                       <p class="author">Author: {{ post.author }}</p>
-                                   </div>
-                               </div>
+                            <!-- Image Container -->
+                            <div class="image-container">
+                                {% if post.featured_image %}
+                                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                                {% else %}
+                                <p>No image available</p>
+                                {% endif %}
+                                <div class="image-flash">
+                                    <p class="author">Author: {{ post.author }}</p>
+                                </div>
+                            </div>
 
                             <!-- Post Excerpt -->
                             <a href="#" class="post-link">
