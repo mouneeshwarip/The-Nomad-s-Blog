@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'blog',
     'cloudinary',
     'cloudinary_storage',
+    'about',
 ]
 
 MIDDLEWARE = [
