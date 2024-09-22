@@ -89,11 +89,14 @@
     </nav>
 
     <main class="flex-shrink-0 main-bg">
+        
+        {% if user.is_authenticated %}
+        <p class="text-end m-3">Welcome back, {{ user }}! Ready for your next adventure?</p>
+        {% else %}
+        <p class="text-end m-3">Hello, traveler! Sign in to start your journey.</p>
+        {% endif %}
 
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
-
+        
     </main>
 
     <!-- Footer -->
