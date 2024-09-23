@@ -3,7 +3,7 @@ from django.views import generic
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.db.models import Count
-from .models import Post, Like, Share
+from .models import Post, Like, Share, Category
 
 # Create your views here.
 class PostList(generic.ListView):
@@ -31,37 +31,39 @@ def post_detail(request, slug):
 
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
-    return render( request,"blog/post_detail.html",{"post": post})   
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
 
-# Category list view
+    return render(request,"blog/post_detail.html",
+      {
+        "post": post,
+        "comments": comments,
+        "comment_count": comment_count,
+      },
+    )
 class CatListView(ListView):
     """
-     Returns all published posts in :model:`blog.Category`
-    and displays them on a page.
-
-    **Context**
-
-    ``post``
-        An instance of :model:`blog.Post`.
-    ``category``
-        Group of published posts in :model:`blog.Category`
-    displayed on a page.
+    Displays all published posts within a specific category.
     """
-    template_name = 'bewell_blog/category.html'
-    context_object_name = 'catlist'
+    model = Post
+    template_name = 'blog/category.html'
+    context_object_name = 'posts'  # This will be the variable used in the template
 
     def get_queryset(self):
-        content = {
-            'cat': self.kwargs['category'],
-            'posts': Post.objects.filter(category__name=self.kwargs[
-                'category']).filter(status=1)
-        }
-        return content
+        # Filter posts based on the category name passed in the URL
+        category = self.kwargs['category']
+        return Post.objects.filter(category__name=category,status=1).annotate(
+            like_count=Count('likes'),
+            share_count=Count('shares')
+        )
 
 
-def category_list(request):
-    category_list = Category.objects.exclude(name='other')
-    context = {
-        "category_list": category_list,
-    }
-    return context
+    def get_context_data(self, **kwargs):
+        # Add the category name to the context for display
+        context = super().get_context_data(**kwargs)
+        context['cat'] = self.kwargs.get('category')
+       
+        return context
+  
+
+   

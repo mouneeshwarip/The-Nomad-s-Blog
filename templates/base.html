@@ -51,7 +51,8 @@
                         <a class="nav-link {% if request.path == about_url %}active{%endif%}" aria-current="page"
                             href="{% url 'about' %}">About</a>
                     </li>
-                    {% if user.is_authenticated %}
+                    <li>
+                        {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
                             href="{% url 'account_logout' %}">Logout</a>
@@ -66,37 +67,44 @@
                             href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
                         </a>
                         <div class="dropdown-menu light" aria-labelledby="navbarDropdownMenuLink">
-                            {% for category in category_list %}
-                            <a class="dropdown-item" href="/category/{{ category.name}}">
-                                {{ category.name|title }}
-                            </a>
-                            {% endfor %}
+                            <a class="dropdown-item" href="/category/wanderlust_europe">Wanderlust Europe</a>
+                            <a class="dropdown-item" href="/category/global-bitesandwaves">Global Btes and Waves</a>
+                            <a class="dropdown-item" href="/category/family-adventures">Family Adventures</a>
+                            <a class="dropdown-item" href="/category/travel-storiesandtips">Travel Stories and Tips</a>
                         </div>
                     </li>
+
                 </ul>
 
                 <span class="navbar-text text-muted">
                     The Nomad's Blog
+                    
                 </span>
             </div>
         </div>
     </nav>
 
     <main class="flex-shrink-0 main-bg">
-        
+
         {% if user.is_authenticated %}
         <p class="text-end m-3">Welcome back, {{ user }}! Ready for your next adventure?</p>
         {% else %}
         <p class="text-end m-3">Hello, traveler! Sign in to start your journey.</p>
         {% endif %}
 
-        
+        {% block content %}
+        <!-- Content Goes here -->
+        {% endblock content %}
+
+
     </main>
 
     <!-- Footer -->
