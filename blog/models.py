@@ -50,12 +50,12 @@ class Comment(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return f"Comment {self.body} by {self.user}"   
+        return f"Comment {self.body} by {self.author}"   
 
 class Like(models.Model):
     # Tracks likes for posts, can be associated with a registered user or an anonymous session
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     session_id = models.CharField(max_length=100, null=True, blank=True)  #For anonymous likes
     liked_on = models.DateTimeField(auto_now_add=True)
 
@@ -64,12 +64,12 @@ class Like(models.Model):
         ordering = ["-liked_on"]
 
     def __str__(self):
-        return f"{self.user or 'Anonymous'} liked {self.post.title}"     
+        return f"{self.author or 'Anonymous'} liked {self.post.title}"     
 
 class Share(models.Model):
     # Tracks shares for posts, can be associated with a registered user or an anonymous session
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='shares')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     session_id = models.CharField(max_length=100, null=True, blank=True)  #For anonymous shares
     shared_on = models.DateTimeField(auto_now_add=True)
 
@@ -78,4 +78,4 @@ class Share(models.Model):
         ordering = ["-shared_on"]
 
     def __str__(self):
-        return f"{self.user or 'Anonymous'} shared {self.post.title}"           
+        return f"{self.author or 'Anonymous'} shared {self.post.title}"           
