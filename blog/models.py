@@ -19,7 +19,7 @@ class Category(models.Model):
 class Post(models.Model):
     # Stores all the blog posts with details such as title, content, author, and status
     title=models.CharField(max_length=200, unique=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=3)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=2)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts")
     content = models.TextField()
