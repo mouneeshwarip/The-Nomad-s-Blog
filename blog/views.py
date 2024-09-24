@@ -4,15 +4,14 @@ from django.contrib import messages
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.db.models import Count
-from .models import Post, Like, Share, Category, Comment
+from .models import Post, Like, Category, Comment
 from .forms import CommentForm
 
 # Create your views here.
 class PostList(generic.ListView):
-   # Annotate each post with the count of likes and shares
+   # Annotate each post with the count of likes 
    queryset = Post.objects.all().annotate(
        like_count=Count('likes'),
-       share_count=Count('shares')
    ).order_by('created_on') 
    template_name = "blog/index.html"   
    paginate_by = 6
@@ -105,7 +104,6 @@ class CatListView(ListView):
         category = self.kwargs['category']
         return Post.objects.filter(category__name=category,status=1).annotate(
             like_count=Count('likes'),
-            share_count=Count('shares')
         )
 
 

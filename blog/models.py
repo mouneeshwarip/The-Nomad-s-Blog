@@ -66,16 +66,3 @@ class Like(models.Model):
     def __str__(self):
         return f"{self.author or 'Anonymous'} liked {self.post.title}"     
 
-class Share(models.Model):
-    # Tracks shares for posts, can be associated with a registered user or an anonymous session
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='shares')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    session_id = models.CharField(max_length=100, null=True, blank=True)  #For anonymous shares
-    shared_on = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        # Orders shares by the date they were made, with the most recent first
-        ordering = ["-shared_on"]
-
-    def __str__(self):
-        return f"{self.author or 'Anonymous'} shared {self.post.title}"           
