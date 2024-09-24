@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-jjl0dg@5$3m7-48kcc2qc78@y$=56$6i*cj14jbew%*01j*0p5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-mouneeshwar-thenomadsbl-jmwmo0smu7b.ws.codeinstitute-ide.net','.herokuapp.com']
 
@@ -168,4 +168,3 @@ CLOUDINARY_STORAGE = {
 
 # Use Cloudinary to store media files
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-

@@ -42,13 +42,13 @@ body {
 }
 
 .custom-card h5 {
-    color: hsl(14.95deg 65.83% 45.01%); /* Dark green color for h5 */
-    font-size: 1.5rem; /* Adjust font size */
+    color: hsl(14.95deg 65.83% 45.01%) !important ; 
+    font-size: 1.5rem; 
 }
 
 .custom-card p {
-    color: rgb(34, 192, 118); /* Gray color for paragraph text */
-    font-size: 1.2rem; /* Adjust font size */
+    color: rgb(34, 192, 118);
+    font-size: 1.2rem; 
 }
 
 .image-container {

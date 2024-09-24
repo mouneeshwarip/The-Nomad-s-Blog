@@ -10,6 +10,9 @@ from .forms import CommentForm
 
 # Create your views here.
 class PostList(generic.ListView):
+    """
+    Displays a list of published posts.
+    """
     queryset = Post.objects.filter(status=1)
     template_name = "blog/index.html"
     paginate_by = 6
@@ -18,17 +21,8 @@ class PostList(generic.ListView):
 def post_detail(request, slug):
     """
     Display an individual :model:`blog.Post`.
-
-    **Context**
-
-    ``post``
-        An instance of :model:`blog.Post`.
-
-    **Template:**
-
-    :template:`blog/post_detail.html`
+    Shows details of a specific post, its comments, and like count.
     """
-
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("-created_on")
@@ -54,15 +48,13 @@ def post_detail(request, slug):
         "like_count": like_count,
       },
     )
-'''
-def like_post(request, slug):
-        post = get_object_or_404(Post, slug=slug)
-        post.likes.add(request.user)
-        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
-
-        '''
 
 def like_post(request, slug):
+    """
+    Toggles a like or dislike for a post. 
+    Shows a message based on the action.
+    Instead of redirecting, re-render the post_detail page with the message
+    """
     post = get_object_or_404(Post, slug=slug)
 
     if request.user.is_authenticated:
@@ -76,13 +68,10 @@ def like_post(request, slug):
     else:
         messages.error(request, "Please Register to like this post.")
     
-    # Instead of redirecting, re-render the post_detail page with the message
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
     like_count = post.likes.count()
-
     comment_form = CommentForm()
-    
     return render(request, "blog/post_detail.html", {
         "post": post,
         "comments": comments,
@@ -94,7 +83,7 @@ def like_post(request, slug):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    View to edit comments
     """
     if request.method == "POST":
 
@@ -116,7 +105,7 @@ def comment_edit(request, slug, comment_id):
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    View to delete comment
     """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
@@ -133,24 +122,22 @@ def comment_delete(request, slug, comment_id):
 class CatListView(ListView):
     """
     Displays all published posts within a specific category.
+    Filter posts based on the category name passed in the URL.
+    Add the category name to the context for display.
     """
     model = Post
     template_name = 'blog/category.html'
-    context_object_name = 'posts'  # This will be the variable used in the template
+    context_object_name = 'posts' 
 
     def get_queryset(self):
-        # Filter posts based on the category name passed in the URL
         category = self.kwargs['category']
         return Post.objects.filter(category__name=category,status=1).annotate(
             like_count=Count('likes'),
         )
 
-
     def get_context_data(self, **kwargs):
-        # Add the category name to the context for display
         context = super().get_context_data(**kwargs)
         context['cat'] = self.kwargs.get('category')
-       
         return context
   
 

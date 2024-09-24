@@ -4,7 +4,17 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
+    """
+    Admin configuration for the Post model, allowing customization of
+    the admin interface. 
 
+    - Displays the title, slug, status, and timestamps in the list view.
+    - Enables search functionality based on the post title.
+    - Filters posts by status.
+    - Automatically generates the slug based on the title.
+    - Uses Summernote for rich text editing of the content field.
+    - Displays a thumbnail of the featured image in the admin interface.
+    """
     list_display = ('title', 'slug', 'status', 'created_on', 'updated_on')
     search_fields = ['title']
     list_filter = ('status',)

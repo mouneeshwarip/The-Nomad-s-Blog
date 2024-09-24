@@ -3,11 +3,6 @@
 {% load static %}
 
 {% block content %}
-<!--
-<div class="image-container">
-    <img src="{% static 'images/hero_img.jpg' %}" />
-</div>
--->
 
 <div class="container my-4">
     <div class="card text-center  custom-card">
@@ -45,10 +40,6 @@
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
-
-                            <!-- Post Stats: Likes -->
-                            <p class="card-text">Likes: {{ post.like_count }}</p>
-
                             <hr />
                             <p class="card-text text-muted h6">{{ post.created_on}}
                             </p>
@@ -76,6 +67,6 @@
 </div>
 
 {% block copyright %}
-Copyright 2024 Mouna Balakumaran
+Brought to you by Nomad's Blog
 {% endblock %}
 {% endblock %}
