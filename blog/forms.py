@@ -1,4 +1,4 @@
-from .models import Comment
+from .models import Comment, TravelStory
 from django import forms
 
 
@@ -12,3 +12,11 @@ class CommentForm(forms.ModelForm):
         """
         model = Comment
         fields = ('body',)
+
+class TravelStoryForm(forms.ModelForm):
+    '''
+    Form class to perform CRUD operations by user
+    '''
+    class Meta:
+        model = TravelStory
+        fields = ['title', 'content']        

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Category, Like
+from .models import Post, Comment, Category, Like, TravelStory
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Post)
@@ -27,6 +27,17 @@ class PostAdmin(SummernoteModelAdmin):
         return 'No Image'
 
     featured_image_display.short_description = 'Featured Image'
+
+@admin.register(TravelStory)
+class TravelStoryAdmin(SummernoteModelAdmin):
+    '''
+    Register the TravelStory model.
+    Customize Admin Interface.
+    '''
+    list_display = ('title', 'author', 'status', 'created_on', 'updated_on')
+    list_filter = ('status',)
+    prepopulated_fields = {'slug': ('title',)} 
+    summernote_fields = ('content',)  
 
 admin.site.register(Comment)
 admin.site.register(Category)

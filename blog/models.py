@@ -69,7 +69,7 @@ class Like(models.Model):
     Tracks likes for posts, can be associated with a registered user or an anonymous session.
     '''
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='like_set')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #user
     session_id = models.CharField(max_length=100, null=True, blank=True)  #For anonymous likes
     liked_on = models.DateTimeField(auto_now_add=True)
 
@@ -81,4 +81,20 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.author or 'Anonymous'} liked {self.post.title}"     
+
+class TravelStory(models.Model):
+    '''
+    Model for submitting user's travel story
+    '''
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=200, unique=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(default=0) 
+    pending_approval = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title        
 
