@@ -272,6 +272,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 * [Stack Overflow](https://stackoverflow.com/)
 * [Chatgpt](https://openai.com/chatgpt/)
 * [Youtube Video](www.youtube.com/@the_proton_guy)
+* [Youtube Video](codemy.com)
+
 
 
 

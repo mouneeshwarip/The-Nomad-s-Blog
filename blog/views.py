@@ -54,11 +54,41 @@ def post_detail(request, slug):
         "like_count": like_count,
       },
     )
-
+'''
 def like_post(request, slug):
         post = get_object_or_404(Post, slug=slug)
         post.likes.add(request.user)
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+        '''
+
+def like_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+
+    if request.user.is_authenticated:
+        if request.user in post.likes.all():
+            messages.warning(request, "You have already liked this post.")
+        else:
+            post.likes.add(request.user)
+            messages.success(request, "You liked the post!")
+    else:
+        messages.error(request, "Please Register to like this post.")
+    
+    # Instead of redirecting, re-render the post_detail page with the message
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
+    like_count = post.likes.count()
+
+    comment_form = CommentForm()
+    
+    return render(request, "blog/post_detail.html", {
+        "post": post,
+        "comments": comments,
+        "comment_count": comment_count,
+        "comment_form": comment_form,
+        "like_count": like_count,
+    })
+
 
 def comment_edit(request, slug, comment_id):
     """
