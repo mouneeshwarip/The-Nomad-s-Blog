@@ -67,7 +67,9 @@ def like_post(request, slug):
 
     if request.user.is_authenticated:
         if request.user in post.likes.all():
-            messages.warning(request, "You have already liked this post.")
+             post.likes.remove(request.user)
+             messages.success(request, "You have unliked this post.")
+            
         else:
             post.likes.add(request.user)
             messages.success(request, "You liked the post!")

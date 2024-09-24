@@ -2,7 +2,7 @@
 Nomad's Blog is a user-friendly travel blog platform designed to help users explore various travel stories and plan their vacations. Visitors can browse through a wide range of posts categorized by destination or travel type, and discover useful tips and advice for planning their next trip. Registered users can engage with others by commenting on posts, and they can also share their own travel experiences by creating blog entries. It’s the perfect platform for both seasoned travelers and those looking for inspiration and advice.
 
 <h1>Live Site</h1>
-A live version of the site can be found <a href=" " target="_blank">here</a>
+A live version of the site can be found <a href="https://the-nomad-s-blog-c3ceca4d0e99.herokuapp.com/" target="_blank">here</a>
 <br>
 
 <img src=" ">
