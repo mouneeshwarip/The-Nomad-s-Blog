@@ -171,6 +171,21 @@ def edit_story(request, story_id):
         form = TravelStoryForm(instance=story)
     return render(request, 'blog/edit_story.html', {'form': form})
 
+class ApprovedStoryList(generic.ListView):
+    """
+    Display a list of approved travel stories.
+
+    **Context**
+
+    ``object_list``
+        A list of approved travel stories.
+
+    **Template:**
+    :template:`blog/story_list.html`
+    """
+    queryset = TravelStory.objects.filter(status=1)
+    template_name = "blog/story_list.html"    
+
     
   
 

@@ -38,6 +38,13 @@ class TravelStoryAdmin(SummernoteModelAdmin):
     list_filter = ('status',)
     prepopulated_fields = {'slug': ('title',)} 
     summernote_fields = ('content',)  
+    def approve_stories(self, request, queryset):
+        '''
+        Admin to approve user created travel story
+        '''
+        queryset.update(status=1, pending_approval=False)
+    approve_stories.short_description = 'Approve selected stories'
+
 
 admin.site.register(Comment)
 admin.site.register(Category)
