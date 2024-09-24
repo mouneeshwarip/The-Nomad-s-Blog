@@ -29,6 +29,7 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', blank=True, null=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    likes = models.ManyToManyField(User, related_name="liked_posts")
 
     class Meta:
         # Orders posts by creation date, with the oldest first
@@ -54,7 +55,7 @@ class Comment(models.Model):
 
 class Like(models.Model):
     # Tracks likes for posts, can be associated with a registered user or an anonymous session
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='like_set')
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     session_id = models.CharField(max_length=100, null=True, blank=True)  #For anonymous likes
     liked_on = models.DateTimeField(auto_now_add=True)

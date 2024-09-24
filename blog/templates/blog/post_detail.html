@@ -36,6 +36,16 @@
             </div>
         </div>
     </div>
+    <br/><br/>
+    <hr>
+    <br/>
+    <!-- Post Like Button-->
+    <form action="{% url 'like_post' post.slug %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-sm">Like</button>
+    </form>
+
+
     <!-- Displaying count of comments -->
     <div class="row">
         <div class="col-12">

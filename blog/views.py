@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
+from django.urls import reverse
 from django.contrib import messages
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
@@ -52,6 +53,11 @@ def post_detail(request, slug):
         "comment_form": comment_form,
       },
     )
+
+def like_post(request, slug):
+        post = get_object_or_404(Post, slug=slug)
+        post.likes.add(request.user)
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 def comment_edit(request, slug, comment_id):
     """
