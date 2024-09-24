@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.db.models import Count
-from .models import Post, Like, Category, Comment
-from .forms import CommentForm
+from .models import Post, Like, Category, Comment, TravelStory
+from .forms import CommentForm, TravelStoryForm
 
 # Create your views here.
 class PostList(generic.ListView):
@@ -139,6 +139,39 @@ class CatListView(ListView):
         context = super().get_context_data(**kwargs)
         context['cat'] = self.kwargs.get('category')
         return context
+
+def add_story(request):
+    '''
+    View that handle creation of travel stories
+    '''
+    if request.method == 'POST':
+        form = TravelStoryForm(request.POST)
+        if form.is_valid():
+            story = form.save(commit=False)
+            story.author = request.user
+            story.status = 0  
+            story.pending_approval = True
+            story.save()
+            return redirect('story_list')
+    else:
+        form = TravelStoryForm()    
+        return render(request, 'blog/add_story.html', {'form': form})
+
+def edit_story(request, story_id):
+    '''
+      View that handle creation of travel stories
+    '''
+    story = get_object_or_404(TravelStory, id=story_id, author=request.user)
+    if request.method == 'POST':
+        form = TravelStoryForm(request.POST, instance=story)
+        if form.is_valid():
+            form.save()
+            return redirect('story_detail', story_id=story.id)
+    else:
+        form = TravelStoryForm(instance=story)
+    return render(request, 'blog/edit_story.html', {'form': form})
+
+    
   
 
    
