@@ -41,10 +41,6 @@ body {
     background-color: transparent;
 }
 
-.custom-card {
-    background-color: hwb(146 58% 17%); 
-}
-
 .custom-card h5 {
     color: hsl(14.95deg 65.83% 45.01%); /* Dark green color for h5 */
     font-size: 1.5rem; /* Adjust font size */
