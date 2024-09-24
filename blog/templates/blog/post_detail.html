@@ -11,7 +11,7 @@
                 <!-- Post author goes before the | the post's created date goes after -->
                 <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
                 <!-- Post Likes -->
-                <p class="post-subtitle">Likes: {{ post.like_count }} </p>
+                <p class="post-subtitle">Likes: {{ like_count }} </p>
             </div>
             <div class="d-md-block col-md-6">
                 {% if "placeholder" in post.featured_image.url %}
