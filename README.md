@@ -51,7 +51,7 @@ The Nomad's Blog is a full stack Django project that runs on Heroku.
 
 1. View a paginated list of posts so that I can easily browse and choose which post to read.
 2. Click on a post to read the full text.
-3. Create and register an account so that I can comment on posts and write my own travel stories.
+3. Create and register an account so that I can comment on posts and Like the Posts.
 4. View comments on individual posts to read the ongoing conversation.
 5. Click on the About link to learn more about the site.
 6. Choose between different categories to view posts in the category that interests me the most.
@@ -87,6 +87,28 @@ The Agile Methodology was used to plan this project. This was implemented throug
 
 4. Community Engagement: Foster a community where both registered and anonymous users can express appreciation through likes and shares, while registered users can post comments.
 
+<h1 id="design">Design</h1>
+
+<a href="#top">Back to the top.</a>
+
+<h2 id="colours">Colours</h2>
+
+The color palette of Nomad's Blog predominantly features various shades of green, reflecting the project's commitment to celebrating nature and promoting a sense of peacefulness. Each hue is carefully selected to evoke feelings of tranquility and harmony, symbolizing our dedication to environmental awareness and the beauty of the natural world. This design choice not only enhances the aesthetic appeal of the blog but also aligns with our mission to inspire wanderlust and appreciation for the great outdoors. The colors are  #rgb(34, 192, 118), #445261, #17c9a0, #188181.
+
+<h2 id="media">Media</h2>
+
+* All photographs used on the blog are from<a href="https://www.pexels.com/" target="_blank"> Pexels.com </a>
+
+<h1 id="features">Features</h1>
+
+<a href="#top">Back to the top.</a>
+
+
+<h2 id="homepage">Homepage</h2>
+
+* It is the landing page of the website which user can see first when the site loads. The homepage displays the latest 6 posts.
+
+<img src="documentation/images/home.png">
 
 
 <h2 id="future-features">Possible Future Features</h2>
