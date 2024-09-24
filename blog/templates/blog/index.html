@@ -3,8 +3,21 @@
 {% load static %}
 
 {% block content %}
+<!--
+<div class="image-container">
+    <img src="{% static 'images/hero_img.jpg' %}" />
+</div>
+-->
 
-<!-- index.html content starts here -->
+<div class="container my-4">
+    <div class="card text-center  custom-card">
+        <div class="card-body">
+            <h5 class="card-title">Welcome to Nomad's Blog!</h5>
+            <br/>
+            <p class="card-text">"Not all those who wander are lost." Join us on a journey to discover amazing travel stories and adventures from around the world.</p>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row">
 
@@ -31,7 +44,7 @@
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
-                            </a> 
+                            </a>
 
                             <!-- Post Stats: Likes -->
                             <p class="card-text">Likes: {{ post.like_count }}</p>
@@ -63,7 +76,6 @@
 </div>
 
 {% block copyright %}
-    Copyright 2024 Mouna Balakumaran
+Copyright 2024 Mouna Balakumaran
 {% endblock %}
 {% endblock %}
-

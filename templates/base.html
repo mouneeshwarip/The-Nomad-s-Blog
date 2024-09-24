@@ -107,19 +107,19 @@
     </div>
 
 
-    <main class="flex-shrink-0 main-bg">
-
+    <main class="flex-shrink-0 main-bg mb-auto mt-3">
         {% if user.is_authenticated %}
-        <p class="text-end m-3">Welcome back, {{ user }}! Ready for your next adventure?</p>
+        <p class="text-end mt-3">You are logged in as {{ user }}</p>
         {% else %}
-        <p class="text-end m-3">Hello, traveler! Sign in to start your journey.</p>
+        <p class="text-end mt-3">You are not logged in</p>
         {% endif %}
-
+  
         {% block content %}
-        <!-- Content Goes here -->
+        <!--Content Goes here -->
         {% endblock content %}
 
-
+        </div>
+  
     </main>
 
     <!-- Footer -->
