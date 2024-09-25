@@ -1,5 +1,5 @@
 <h1>The Nomad's Blog</h1>
-Nomad's Blog is a user-friendly travel blog platform designed to help users explore various travel stories and plan their vacations. Visitors can browse through a wide range of posts categorized by destination or travel type, and discover useful tips and advice for planning their next trip. Registered users can engage with others by commenting on posts, and they can also share their own travel experiences by creating blog entries. It’s the perfect platform for both seasoned travelers and those looking for inspiration and advice.
+Nomad's Blog is a user-friendly travel blog platform designed to help users explore various travel stories and plan their vacations. Visitors can browse through a wide range of posts categorized by destination or travel type, and discover useful tips and advice for planning their next trip. Registered users can engage with others by commenting on posts, and they can also share their own travel experiences. It’s the perfect platform for both seasoned travelers and those looking for inspiration and advice.
 
 <h1>Live Site</h1>
 A live version of the site can be found <a href="https://the-nomad-s-blog-c3ceca4d0e99.herokuapp.com/" target="_blank">here</a>
@@ -110,6 +110,61 @@ The color palette of Nomad's Blog predominantly features various shades of green
 
 <img src="documentation/images/home.png">
 
+<h2 id="navigation-desktop">Navigation Desktop</h2>
+
+<a href="#top">Back to the top.</a>
+
+* The site navigation is done through the navigation bar at the top of each page & this is consistant throughout the website.
+
+* The navigation bar at the top of each page is sticky to allow access to the navigation at any time.
+
+* Options on the navigation bar change depending on whether the user is logged in or not, or is an admin/staffuser or not.
+
+<img src="documentation/images/categories.png">
+
+<h2 id="post-details">Posts Details</h2>
+
+
+<h2 id="Likes">Likes</h2>
+
+The Like Posts feature has been introduced for registered users. Upon logging in, users can express their appreciation for their favorite posts by liking them.
+
+When a user likes a post, the displayed number of likes is updated and increased by one. Additionally, users have the option to click the like button again to remove their like, which subsequently decreases the count.
+
+This functionality effectively demonstrates CRED operations (Create, Read, Update, Delete) on the website, enhancing user engagement and interaction with the content.
+
+<img src="documentation/images/likes_button.png">
+
+
+<img src="documentation/images/likes.png">
+
+
+<img src="documentation/images/post-comment_crud.png">
+
+
+<a href="#top">Back to the top.</a>
+
+* When a regular user is visiting they can view and read a post onthe post detail page.
+
+* When an authenticated user is logged in they can also comment on a post.
+
+* If a comment is submitted this will have to be approved by an Admin user before it is displayed on the site.
+
+<a href="#top">Back to the top.</a>
+
+<h2 id="categories">Categories</h2>
+
+* To see categories for posts click the Category menu in the navbar and click on selected category in a dropdown menu. All post belonging to chosen category will be displayed.
+
+<img src="documentation/images/post-comment_crud.png">
+
+
+<h2 id="admin-backend">Admin on the Backend</h2>
+
+* Superusers or staffusers are able to managae the posts and categories on the backend.
+
+<img src="documentation/images/admin_panel.png">
+
 
 <h2 id="future-features">Possible Future Features</h2>
 
@@ -132,6 +187,84 @@ The color palette of Nomad's Blog predominantly features various shades of green
 * [JavaScript](https://www.javascript.com/)
 * [Django](https://www.python.org/)
 * [Python](https://www.djangoproject.com/)
+
+<h2 id="django-packages">Django Packages Used</h2>
+
+* [Gunicorn](https://gunicorn.org/)<br>
+   As the server for Heroku
+* [Cloudinary](https://cloudinary.com/)<br>
+   Was used to host the static files and media
+* [Dj_database_url](https://pypi.org/project/dj-database-url/)<br>
+   To parse the database URL from the environment variables in Heroku
+* [Psycopg2](https://pypi.org/project/psycopg2/)<br>
+   As an adaptor for Python and PostgreSQL databases
+* [Summernote](https://summernote.org/)<br>
+   As a text editor
+* [Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html)<br>
+   For authentication, registration, account
+   management
+* [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)<br>
+   To style the forms
+* [Whitenoise](http://whitenoise.evans.io/en/stable/)<br>
+   For static CSS on Heroku
+
+<h2 id="frameworks">Frameworks - Libraries - Programs Used</h2>
+
+* [Bootstrap](https://getbootstrap.com/)<br>
+   
+* [Jquery](https://jquery.com/)<br>
+   
+* [Git](https://git-scm.com/)<br>
+   
+* [GitHub](https://github.com/)<br>
+   
+* [Heroku](https://id.heroku.com)<br>
+   
+* [ElephantSQL](https://www.elephantsql.com/)<br>
+   
+* [VSCode](https://code.visualstudio.com/)<br>
+  
+* [Fontawesome](https://fontawesome.com/)<br>
+   
+* [Google Chrome Dev Tools](https://developer.chrome.com/docs/devtools/)<br>
+
+
+<h1 id="testing">Development & Testing</h1>
+
+<a href="#top">Back to the top.</a>
+
+
+<h2 id="testing-results">Manual Testing Results</h2>
+
+* Manual Testing results 
+
+* [PEP8](http://pep8online.com/)<br>
+   PEP8 was used to validate all the Python code:
+   - bugs detected in some files (models.py)
+   <img src="documentation/images/test_files/settings.py_linter.png">
+
+    - <img src="documentation/images/test_files/views.py_linter.png">
+
+
+* All files in about, my_project and bewell_blog apps came back clear except settings.py where's 1 line too long. It's in ALLOWED_HOSTS and cannot be shortend.
+   <img src="documentation/images/test_files/issue-in-settings-py.png">
+
+* [W3C - HTML](https://validator.w3.org/)<br>
+   W3C- HTML was used to validate all the HTML code
+   <img src="documentation/images/test_files/html_vali.png">
+* [W3C - CSS](https://jigsaw.w3.org/css-validator/)<br>
+   W3C - CSS was used to validate the CSS code
+   <img src="documentation/images/test_files/css_file.png">
+  
+  * The Login and Logout system is working correctly. It shows the right interactive message to the users on Login and Logout.
+
+  ## Login
+
+![Login Success](documentation/images/sign_in.png)
+
+
+## CRUD
+   * Full CRUD functionality is present. Users can view (Read) posts on the page, and once registered and logged in they can comment on a post (Create), update their posts (Update) and delete their posts (Delete) if they wish.
 
 
 <h1 id="deployment">Deployment</h1>
@@ -166,8 +299,6 @@ Now that you are logged in, the first thing is to create a new app. Heroku creat
 URL based on your app name, so it must be unique not only on your account, but
 across the whole site. You may need to try a few different names. To create an app
 use the following command, where myapp is the name of your app.
- 
-<img src=" "><br><br>
 
 * Here the app heroku-cli-example has been created with an output of the website
 URL. It also displays and sets the git remote repository which will be used to deploy.
