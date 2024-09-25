@@ -139,9 +139,6 @@ This functionality effectively demonstrates CRED operations (Create, Read, Updat
 <img src="documentation/images/likes.png">
 
 
-<img src="documentation/images/post-comment_crud.png">
-
-
 <a href="#top">Back to the top.</a>
 
 * When a regular user is visiting they can view and read a post onthe post detail page.
@@ -156,7 +153,7 @@ This functionality effectively demonstrates CRED operations (Create, Read, Updat
 
 * To see categories for posts click the Category menu in the navbar and click on selected category in a dropdown menu. All post belonging to chosen category will be displayed.
 
-<img src="documentation/images/post-comment_crud.png">
+<img src="documentation/images/comment_crud.png">
 
 
 <h2 id="admin-backend">Admin on the Backend</h2>
@@ -241,20 +238,20 @@ This functionality effectively demonstrates CRED operations (Create, Read, Updat
 * [PEP8](http://pep8online.com/)<br>
    PEP8 was used to validate all the Python code:
    - bugs detected in some files (models.py)
-   <img src="documentation/images/test_files/settings.py_linter.png">
+   <img src="documentation/test_files/settings.py_linter.png">
 
-    - <img src="documentation/images/test_files/views.py_linter.png">
+    - <img src="documentation/test_files/views.py_linter.png">
 
 
 * All files in about, my_project and bewell_blog apps came back clear except settings.py where's 1 line too long. It's in ALLOWED_HOSTS and cannot be shortend.
-   <img src="documentation/images/test_files/issue-in-settings-py.png">
+   <img src="documentation/test_files/issue-in-settings-py.png">
 
 * [W3C - HTML](https://validator.w3.org/)<br>
    W3C- HTML was used to validate all the HTML code
-   <img src="documentation/images/test_files/html_vali.png">
+   <img src="documentation/test_files/html_vali.png">
 * [W3C - CSS](https://jigsaw.w3.org/css-validator/)<br>
    W3C - CSS was used to validate the CSS code
-   <img src="documentation/images/test_files/css_file.png">
+   <img src="documentation/test_files/css_file.png">
   
   * The Login and Logout system is working correctly. It shows the right interactive message to the users on Login and Logout.
 
@@ -291,8 +288,6 @@ password you used to sign up. If you have enabled multi-factor authentication (a
 recommended security practice) then instead of your password you need an API key.
 To get the API key go to your account settings and scroll down to the section ‘API
 Key’. Click reveal and copy that, then paste it into the password prompt.
-
-<img src=""><br><br>
 
 * Creating A Heroku App
 Now that you are logged in, the first thing is to create a new app. Heroku creates a
