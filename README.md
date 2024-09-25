@@ -244,7 +244,7 @@ This functionality effectively demonstrates CRED operations (Create, Read, Updat
     - <img src="documentation/test_files/views.py_linter.png">
 
 
-* All files in about, my_project and bewell_blog apps came back clear except settings.py where's 1 line too long. It's in ALLOWED_HOSTS and cannot be shortend.
+* All files in about, my_project and apps came back clear except settings.py where's 1 line too long. It's in ALLOWED_HOSTS and cannot be shortend.
    <img src="documentation/test_files/issue-in-settings-py.png">
 
 * [W3C - HTML](https://validator.w3.org/)<br>
