@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block content %}
@@ -9,7 +8,7 @@
         <div class="card-body">
             <h5 class="card-title">Welcome to Nomad's Blog!</h5>
             <br/>
-            <p class="card-text">"Not all those who wander are lost." Join us on a journey to discover amazing travel stories and adventures from around the world.</p>
+            <p class="card-text custom-p">"Not all those who wander are lost." Join us on a journey to discover amazing travel stories and adventures from around the world.</p>
         </div>
     </div>
 </div>
@@ -40,7 +39,7 @@
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
-                            <hr />
+                            <hr>
                             <p class="card-text text-muted h6">{{ post.created_on}}
                             </p>
                         </div>

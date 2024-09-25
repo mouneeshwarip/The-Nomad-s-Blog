@@ -1,12 +1,13 @@
 from django.contrib import admin
-from .models import Post, Comment, Category, Like, TravelStory
+from .models import Post, Comment, Category, Like
 from django_summernote.admin import SummernoteModelAdmin
+
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
     """
     Admin configuration for the Post model, allowing customization of
-    the admin interface. 
+    the admin interface.
 
     - Displays the title, slug, status, and timestamps in the list view.
     - Enables search functionality based on the post title.
@@ -23,30 +24,13 @@ class PostAdmin(SummernoteModelAdmin):
 
     def featured_image_display(self, obj):
         if obj.featured_image:
-            return format_html('<img src="{}" width="100" height="100" />', obj.featured_image.url)
+            return format_html('<img src="{}" width="100" height="100" />',
+                               obj.featured_image.url)
         return 'No Image'
 
     featured_image_display.short_description = 'Featured Image'
-
-@admin.register(TravelStory)
-class TravelStoryAdmin(SummernoteModelAdmin):
-    '''
-    Register the TravelStory model.
-    Customize Admin Interface.
-    '''
-    list_display = ('title', 'author', 'status', 'created_on', 'updated_on')
-    list_filter = ('status',)
-    prepopulated_fields = {'slug': ('title',)} 
-    summernote_fields = ('content',)  
-    def approve_stories(self, request, queryset):
-        '''
-        Admin to approve user created travel story
-        '''
-        queryset.update(status=1, pending_approval=False)
-    approve_stories.short_description = 'Approve selected stories'
 
 
 admin.site.register(Comment)
 admin.site.register(Category)
 admin.site.register(Like)
-

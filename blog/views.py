@@ -5,8 +5,9 @@ from django.contrib import messages
 from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.db.models import Count
-from .models import Post, Like, Category, Comment, TravelStory
-from .forms import CommentForm, TravelStoryForm
+from .models import Post, Like, Category, Comment
+from .forms import CommentForm
+
 
 # Create your views here.
 class PostList(generic.ListView):
@@ -36,22 +37,24 @@ def post_detail(request, slug):
             comment.author = request.user
             comment.post = post
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment submitted and awaiting approval')
+            messages.add_message(request, messages.SUCCESS,
+                                 'Comment submitted and awaiting approval')
     comment_form = CommentForm()
 
-    return render(request,"blog/post_detail.html",
-      {
-        "post": post,
-        "comments": comments,
-        "comment_count": comment_count,
-        "comment_form": comment_form,
-        "like_count": like_count,
-      },
-    )
+    return render(request, "blog/post_detail.html",
+                  {
+                    "post": post,
+                    "comments": comments,
+                    "comment_count": comment_count,
+                    "comment_form": comment_form,
+                    "like_count": like_count,
+                  },
+                  )
+
 
 def like_post(request, slug):
     """
-    Toggles a like or dislike for a post. 
+    Toggles a like or dislike for a post.
     Shows a message based on the action.
     Instead of redirecting, re-render the post_detail page with the message
     """
@@ -59,15 +62,13 @@ def like_post(request, slug):
 
     if request.user.is_authenticated:
         if request.user in post.likes.all():
-             post.likes.remove(request.user)
-             messages.success(request, "You have unliked this post.")
-            
+            post.likes.remove(request.user)
+            messages.success(request, "You have unliked this post.")
         else:
             post.likes.add(request.user)
             messages.success(request, "You liked the post!")
     else:
         messages.error(request, "Please Register to like this post.")
-    
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
     like_count = post.likes.count()
@@ -99,9 +100,11 @@ def comment_edit(request, slug, comment_id):
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
 
 def comment_delete(request, slug, comment_id):
     """
@@ -115,9 +118,10 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(request, messages.ERROR,
+                             'You can only delete your own comments!')
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))   
 
 class CatListView(ListView):
     """
@@ -127,11 +131,11 @@ class CatListView(ListView):
     """
     model = Post
     template_name = 'blog/category.html'
-    context_object_name = 'posts' 
+    context_object_name = 'posts'
 
     def get_queryset(self):
         category = self.kwargs['category']
-        return Post.objects.filter(category__name=category,status=1).annotate(
+        return Post.objects.filter(category__name=category, status=1).annotate(
             like_count=Count('likes'),
         )
 
@@ -139,54 +143,3 @@ class CatListView(ListView):
         context = super().get_context_data(**kwargs)
         context['cat'] = self.kwargs.get('category')
         return context
-
-def add_story(request):
-    '''
-    View that handle creation of travel stories
-    '''
-    if request.method == 'POST':
-        form = TravelStoryForm(request.POST)
-        if form.is_valid():
-            story = form.save(commit=False)
-            story.author = request.user
-            story.status = 0  
-            story.pending_approval = True
-            story.save()
-            return redirect('story_list')
-    else:
-        form = TravelStoryForm()    
-        return render(request, 'blog/add_story.html', {'form': form})
-
-def edit_story(request, story_id):
-    '''
-      View that handle creation of travel stories
-    '''
-    story = get_object_or_404(TravelStory, id=story_id, author=request.user)
-    if request.method == 'POST':
-        form = TravelStoryForm(request.POST, instance=story)
-        if form.is_valid():
-            form.save()
-            return redirect('story_detail', story_id=story.id)
-    else:
-        form = TravelStoryForm(instance=story)
-    return render(request, 'blog/edit_story.html', {'form': form})
-
-class ApprovedStoryList(generic.ListView):
-    """
-    Display a list of approved travel stories.
-
-    **Context**
-
-    ``object_list``
-        A list of approved travel stories.
-
-    **Template:**
-    :template:`blog/story_list.html`
-    """
-    queryset = TravelStory.objects.filter(status=1)
-    template_name = "blog/story_list.html"    
-
-    
-  
-
-   

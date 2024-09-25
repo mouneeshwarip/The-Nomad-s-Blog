@@ -40,6 +40,10 @@ body {
     border: none;
     background-color: transparent;
 }
+
+.card-title h5{
+    color: #ca1010;
+}
 .custom-card p {
     color: rgb(34, 192, 118);
     font-size: 1.2rem; 
@@ -51,7 +55,7 @@ body {
 
 .image-container img {
     width: 100%;    
-    height: 400px;
+    height: 300px;
     object-fit: cover;  
     border-radius: 20px;  
 }
