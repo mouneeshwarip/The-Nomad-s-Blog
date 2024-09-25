@@ -5,7 +5,8 @@ Nomad's Blog is a user-friendly travel blog platform designed to help users expl
 A live version of the site can be found <a href="https://the-nomad-s-blog-c3ceca4d0e99.herokuapp.com/" target="_blank">here</a>
 <br>
 
-<img src=" ">
+<img src="documentation/images/responsive_image.png">
+
 
 <h1 id="contents">Contents</h1>
 
